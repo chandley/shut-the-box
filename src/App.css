@@ -1,0 +1,120 @@
+:root {
+  --tray-green: #2f8f52;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tray-green: #1f6b3a;
+  }
+}
+
+.board-frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border: 3px solid var(--text-h);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 2rem auto;
+}
+
+.tile-row {
+  display: flex;
+  gap: 8px;
+}
+
+.tile {
+  width: 44px;
+  height: 54px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tile-down {
+  background: var(--code-bg);
+  color: var(--text);
+  cursor: default;
+}
+
+.tile-selected {
+  border: 2px solid var(--accent);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.tile:disabled {
+  cursor: default;
+}
+
+.dice-tray {
+  width: 460px;
+  box-sizing: border-box;
+  background: var(--tray-green);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.dice-faces {
+  display: flex;
+  gap: 12px;
+}
+
+.die {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.dice-choice {
+  display: flex;
+  gap: 12px;
+}
+
+.roll-button,
+.commit-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+}
+
+.commit-button:disabled {
+  background: var(--border);
+  color: var(--text);
+  cursor: default;
+}
+
+.end-screen {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-h);
+  text-align: center;
+}
+
+.end-screen-shut {
+  color: var(--accent);
+}
