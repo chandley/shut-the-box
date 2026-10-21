@@ -18,6 +18,10 @@ describe('canChooseDiceCount', () => {
   test('is false when a tile above 6 is still available', () => {
     expect(canChooseDiceCount({ availableTiles: [1, 2, 7] })).toBe(false)
   })
+
+  test('is false on an empty board (shut the box)', () => {
+    expect(canChooseDiceCount({ availableTiles: [] })).toBe(false)
+  })
 })
 
 describe('rollDice', () => {

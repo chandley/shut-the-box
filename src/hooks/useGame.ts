@@ -1,4 +1,4 @@
-import { useCallback, useReducer, useState } from 'react'
+import { useCallback, useLayoutEffect, useReducer, useState } from 'react'
 import type { Game } from '../game/game'
 import { commitRound, createInitialGame, startRound, toggleSelection } from '../game/game'
 import { canChooseDiceCount, diceTotal, rollDice } from '../game/dice'
@@ -9,6 +9,7 @@ type Action =
   | { type: 'startRound'; total: number }
   | { type: 'toggleSelection'; tile: number }
   | { type: 'commitRound' }
+  | { type: 'newGame' }
 
 function reducer(game: Game, action: Action): Game {
   switch (action.type) {
@@ -18,6 +19,8 @@ function reducer(game: Game, action: Action): Game {
       return toggleSelection(game, action.tile)
     case 'commitRound':
       return commitRound(game)
+    case 'newGame':
+      return createInitialGame()
   }
 }
 
@@ -31,6 +34,16 @@ export function useGame() {
     dispatch({ type: 'startRound', total: diceTotal(faces) })
   }, [])
 
+  const mustChooseDiceCount = canChooseDiceCount(game.board)
+
+  // When there's no real choice (a tile above 6 is still available), roll 2
+  // dice automatically instead of making the user click a "roll" prompt.
+  useLayoutEffect(() => {
+    if (game.status === 'playing' && game.currentRound === null && !mustChooseDiceCount) {
+      rollAndStart(2)
+    }
+  }, [game.status, game.currentRound, mustChooseDiceCount, rollAndStart])
+
   const selectTile = useCallback((tile: number) => {
     dispatch({ type: 'toggleSelection', tile })
   }, [])
@@ -39,14 +52,20 @@ export function useGame() {
     dispatch({ type: 'commitRound' })
   }, [])
 
+  const newGame = useCallback(() => {
+    setDiceFaces([])
+    dispatch({ type: 'newGame' })
+  }, [])
+
   return {
     game,
     diceFaces,
-    canChooseDiceCount: canChooseDiceCount(game.board),
+    canChooseDiceCount: mustChooseDiceCount,
     canCommit: game.currentRound !== null && canCommit(game.currentRound),
     score: boardScore(game.board),
     rollAndStart,
     selectTile,
     commit,
+    newGame,
   }
 }

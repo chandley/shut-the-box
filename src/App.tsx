@@ -5,8 +5,17 @@ import { useGame } from './hooks/useGame'
 import './App.css'
 
 function App() {
-  const { game, diceFaces, canChooseDiceCount, canCommit, score, rollAndStart, selectTile, commit } =
-    useGame()
+  const {
+    game,
+    diceFaces,
+    canChooseDiceCount,
+    canCommit,
+    score,
+    rollAndStart,
+    selectTile,
+    commit,
+    newGame,
+  } = useGame()
 
   return (
     <div className="board-frame">
@@ -24,7 +33,7 @@ function App() {
         onRoll={rollAndStart}
         onCommit={commit}
       />
-      {game.status === 'ended' && <EndScreen score={score} />}
+      {game.status === 'ended' && <EndScreen score={score} onNewGame={newGame} />}
     </div>
   )
 }

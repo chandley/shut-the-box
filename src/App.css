@@ -40,8 +40,7 @@
 }
 
 .tile-down {
-  background: var(--code-bg);
-  color: var(--text);
+  opacity: 0.5;
   cursor: default;
 }
 
@@ -70,6 +69,7 @@
 .dice-faces {
   display: flex;
   gap: 12px;
+  min-height: 48px;
 }
 
 .die {
@@ -109,12 +109,29 @@
 }
 
 .end-screen {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.end-screen-message {
   font-size: 20px;
   font-weight: 500;
   color: var(--text-h);
-  text-align: center;
+  margin: 0;
 }
 
-.end-screen-shut {
+.end-screen-shut .end-screen-message {
   color: var(--accent);
+}
+
+.new-game-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
 }

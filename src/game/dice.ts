@@ -11,5 +11,5 @@ export function diceTotal(values: number[]): number {
 
 export function canChooseDiceCount(board: Board): boolean {
   const highest = highestAvailable(board)
-  return highest === undefined || highest <= 6
+  return highest !== undefined && highest <= 6
 }
