@@ -1,4 +1,5 @@
 import { createInitialGame, startRound, toggleSelection, commitRound } from '../game/game'
+import type { Game } from '../game/game'
 import { createInitialBoard, boardScore } from '../game/board'
 
 describe('createInitialGame', () => {
@@ -61,8 +62,8 @@ describe('commitRound', () => {
   })
 
   test('ends the game with a score of 0 when the board is emptied', () => {
-    let game = {
-      status: 'playing' as const,
+    let game: Game = {
+      status: 'playing',
       board: { availableTiles: [9] },
       currentRound: { diceTotal: 9, selectedTiles: [] },
     }
