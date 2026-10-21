@@ -37,3 +37,22 @@ Once the 7 and higher tiles have all been lowered, players may choose to roll wi
 Players add the total of any upright tiles at the end of their turn to their score. The player with the lowest score wins![5]
 For example, if a player ends their turn with the 1, 2, and 7 tiles upright, their final score is 10.
 
+### User experience details
+
+The game is divided into a number of rounds
+
+In each round, we roll two dice (user can select 1 dice if no numbers above 6 are available)
+
+If there is no tile total matching the die roll, game ends (see below)
+
+User sees a grey button inviting them to select numbers matching the dice total
+
+An available number can be selected - if numbers are seleted that match the die total, the button changes and invites the user to roll again
+Until the user decides to roll again, they can unchoose a tile.
+
+On committment to roll again, the list of available numbers is updated.
+
+If there are no available numbers left after the list is updated, show a shut the box message. User has won
+Otherwise go to the next round
+
+Show the score if the game ends due to inability to play
